@@ -55,7 +55,7 @@ switch(base_year % 400)
 }
 int sum = 0;
 int data = year%100;
-switch((data)/4)
+switch((data)%4)
 { 
     case 0: 
     //leap year
