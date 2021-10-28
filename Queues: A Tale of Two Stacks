@@ -1,0 +1,101 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static void main(String[] args) {
+        MyQueue queue = new MyQueue();
+
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            int operation = scan.nextInt();
+            if (operation == 1) { // enqueue
+              queue.enqueue(scan.nextInt());
+            } else if (operation == 2) { // dequeue
+              queue.dequeue();
+            } else if (operation == 3) { // print/peek
+              System.out.println(queue.peek());
+            }
+        }
+        scan.close();
+    }
+    
+}
+ class MyQueue
+{
+    Stack<Integer> s1 = new Stack<Integer>();
+    Stack<Integer> s2 = new Stack<Integer>();
+    
+    public void enqueue(int x)
+    {
+        /*if(s2.empty())      //checking if before it any previous elements are to their.
+         s1.push(x);
+        else
+        {
+            while(!s2.empty())
+            {
+                int y = s2.pop();
+                s1.push(y);
+            }
+            s1.push(x);
+        }
+        */
+        s1.push(x);
+    }
+    public int dequeue()
+    {
+        if(s2.empty())
+       while(!s1.empty())
+       {
+           int x = s1.pop();
+           s2.push(x);
+       }
+       return (int)s2.pop();
+    }
+    public int peek()
+    {    if(s2.empty())
+          while(!s1.empty())
+       {
+           int x = s1.pop();
+           s2.push(x);
+       }
+       if(!s2.empty())
+       return (int)s2.peek();
+       else
+       return 0;
+    }
+    /*
+    private Stack<Integer> reversed;
+        private Stack<Integer> normal;
+        
+     public MyQueue() {
+            normal = new Stack<>();
+            reversed = new Stack<>();
+        }
+
+        public void enqueue(int item) {
+            reversed.push(item);
+        }
+
+        private void pour() {
+            while (!reversed.isEmpty()) {
+                normal.push(reversed.pop());
+            }
+        }
+
+        public int peek() {
+            if (normal.isEmpty()) { pour(); }
+            return normal.peek();
+        }
+
+        public int dequeue() {
+            if (normal.isEmpty()) { pour(); }
+            return normal.pop();
+        }
+        */
+    }
